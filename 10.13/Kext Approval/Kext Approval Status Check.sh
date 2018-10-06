@@ -7,13 +7,13 @@ status=()
 kext_list=()
 
 # Main logic
-for i in ${kext_list[@]}
+for kext in ${kext_list[@]}
 do
   # Check if the kext is in the approved list
-  if [[ $(/usr/bin/sqlite3 /var/db/SystemPolicyConfiguration/KextPolicy 'SELECT * FROM kext_policy;' | grep -c "$i" ) -lt 1 ]]
+  if [[ $(/usr/bin/sqlite3 /var/db/SystemPolicyConfiguration/KextPolicy 'SELECT * FROM kext_policy;' | grep -c "$kext" ) -lt 1 ]]
   then
     # If not then append to array
-    status=(${#status[@]} $i)
+    status=(${#status[@]} $kext)
 done
 
 # Output a JAMF usable result.
