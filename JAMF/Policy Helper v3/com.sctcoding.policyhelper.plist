@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>WindowTitle</key>
+	<string>Title of your policy.</string> <!--Can have spaces. Shorter is better.-->
+	
+	<key>PolicyBasicAction</key> <!--Tells the user what the default policy action is.-->
+	<string>Policy does X</string> <!--Shorter is better.-->
+	
+	<key>name</key> <!--Associated name for the script policy helper builds. Needs to be unique-->
+	<string>Shell Script Unique ID</string> <!--No spaces-->
+	
+	<key>Customization1</key> <!--Item 1 Descriptor-->
+	<string>Custom action</string> <!--Keep Short-->
+	<key>Custom1State</key> <!--Item enable/disable-->
+	<string>true|false</string> <!--sets item 1 check box on or off values: true/false-->
+    <key>trigger1</key> <!--JAMF Trigger-->
+    <string>trigger</string> <!--JAMF Trigger Word-->
+    
+    <key>Customization2</key> <!--Item 2 Descriptor-->
+    <string>Custom action</string> <!--Keep Short-->
+	<key>Custom2State</key> <!--Item enable/disable-->
+    <string>true|false</string> <!--sets item 2 check box on or off values: true/false-->
+    <key>trigger2</key> <!--JAMF Trigger-->
+    <string>trigger</string> <!--JAMF Trigger Word-->
+    
+    <key>Customization3</key> <!--Item 3 Descriptor-->
+    <string>Custom action</string> <!--Keep Short-->
+	<key>Custom3State</key> <!--Item enable/disable-->
+    <string>true|false</string> <!--sets item 3 check box on or off values: true/false-->
+    <key>trigger3</key> <!--JAMF Trigger-->
+    <string>trigger</string> <!--JAMF Trigger Word-->
+    
+    <key>Customization4</key> <!--Item 4 Descriptor-->
+    <string>Custom action</string> <!--Keep Short-->
+	<key>Custom4State</key> <!--Item enable/disable-->
+    <string>true|false</string> <!--sets item 4 check box on or off values: true/false-->
+    <key>trigger4</key> <!--JAMF Trigger-->
+    <string>trigger</string> <!--JAMF Trigger Word-->
+    
+    <key>Customization5</key> <!--Item 5 Descriptor-->
+    <string>Custom action</string> <!--Keep Short-->
+	<key>Custom5State</key> <!--Item enable/disable-->
+    <string>true|false</string> <!--sets item 5 check box on or off values: true/false-->
+	<key>trigger5</key> <!--JAMF Trigger-->
+    <string>trigger</string> <!--JAMF Trigger Word-->
+</dict>
+</plist>
