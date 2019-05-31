@@ -1,3 +1,6 @@
+## Download Latest Release
+https://github.com/SCTCoding/EnterpriseAdmin/releases/tag/v1.1
+
 ## Usage Options
 - Execute Policy Helper from a JAMF policy
 - Execute Policy Helper from a local installer (sort of a policy installer)
