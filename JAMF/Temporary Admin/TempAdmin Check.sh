@@ -4,14 +4,14 @@
 loggedInUser=$(stat -f%Su /dev/console)
 loggedInUID=$(id -u $loggedInUser)
 
-if [[ -f “/Users/Shared/.starttime.txt” ]]
+if [[ -f “/Users/Shared/.starttime.txt” ]] && [[ $loggedInUID -gt 2000 ]]
 then
     if [[ $(dseditgroup -o checkmember -m “$loggedInUser" admin) == "yes “$loggedInUser" is a member of admin" ]]
     then
         starttime=$(cat /Users/Shared/.starttime.txt)
         currenttime=$(date +%s)
         difference=$(echo $(( $currenttime - $starttime )))
-        if [[ $difference -ge 1200 ]]
+        if [[ $difference -gt 1200 ]]
         then
             dseditgroup -o edit -d "$loggedInUser" -t user admin 
             launchctl stop com.apple.opendirectoryd
