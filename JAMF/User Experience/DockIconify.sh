@@ -21,7 +21,7 @@ cat << EOD > /private/tmp/DockChoice.sh
 
 osascript <<END
 set dockname to do shell script "cat /private/tmp/appname.txt"
-display dialog "Would you like to add dockname to your dock?" buttons {"No", "Yes"} default button 2 with icon file ":Library:Application Support:JAMF:Jamf.app:Contents:Resources:AppIcon.icns"
+display dialog "Would you like to add " & dockname & " to your dock?" buttons {"No", "Yes"} default button 2
 if button returned of result = "No" then
 	do shell script "rm /private/tmp/appname.txt"
 	quit
