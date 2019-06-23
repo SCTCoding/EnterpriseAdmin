@@ -9,11 +9,25 @@ then
 fi
 
 passwordselected=$(osascript -e 'set userpw to the text returned of (display dialog "Please enter the desired password. (Must be at least 15 characters long uppercase, lowercase, numbers and symbols)" default answer "" buttons {"Cancel", "Continue"} default button "Continue" with hidden answer)')
-if [[ -z $passwordselected ]] && [[ $(echo $passwordselected | wc -m) -lt 15 ]]
+
+passwordverify=$(osascript -e 'set verifypw to the text returned of (display dialog "Please re-enter to verify the password you provided." default answer "" buttons {"Cancel", "Continue"} default button "Continue" with hidden answer)')
+if [[ -z $passwordselected ]] || [[ $(echo $passwordselected | wc -m) -lt 15 ]] || [[ -z $passwordverify ]] || [[ $(echo $passwordverify | wc -m) -lt 15 ]] || [[ $passwordselected != $passwordverify ]]
 then
-	echo "This value cannot be blank."
-	exit 1
+	## Check Passwords Are Equal
+	while [[ $passwordselected != $passwordverify ]]
+	do
+		osascript -e 'display dialog "Password invalid or not the same please try again." buttons {"Try Again"}'
+		passwordselected=$(osascript -e 'set userpw to the text returned of (display dialog "Please enter the desired password. (Must be at least 15 characters long uppercase, lowercase, numbers and symbols)" default answer "" buttons {"Cancel", "Continue"} default button "Continue" with hidden answer)')
+
+		passwordverify=$(osascript -e 'set verifypw to the text returned of (display dialog "Please re-enter to verify the password you provided." default answer "" buttons {"Cancel", "Continue"} default button "Continue" with hidden answer)')
+done	
 fi
+
+if [[ -z $passwordselected ]] || [[ $(echo $passwordselected | wc -m) -lt 15 ]] || [[ -z $passwordverify ]] || [[ $(echo $passwordverify | wc -m) -lt 15 ]]
+		then
+			osascript -e 'display dialog "Password invalid or not the same please try again." buttons {"Dismiss"}'
+			exit 1
+		fi
 
 adminusername=$(osascript -e 'set adminname to the text returned of (display dialog "What is the administrator username?" default answer "" buttons {"Cancel", "Continue"} default button "Continue")')
 if [[ -z $adminusername ]] && [[ ! -z $(ls /Users | grep "$adminusername") ]]
