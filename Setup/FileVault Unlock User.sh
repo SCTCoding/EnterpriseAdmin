@@ -42,7 +42,7 @@ fi
 randUID=$(echo $((600 + RANDOM % 1000)))
 
 ## OS Version Check and Primary Execution
-if [[ $(sw_vers | grep "ProductVersion" | cut -d '.' -f2) -eq 12 ]] && [[ $(diskutil info / | grep "File System Personality" | cut -d ':' -f2 | awk '{print $1}') != "APFS" ]]
+if [[ $(sw_vers | grep "ProductVersion" | cut -d '.' -f2) -ge 12 ]] && [[ $(diskutil info / | grep "File System Personality" | cut -d ':' -f2 | awk '{print $1}') != "APFS" ]]
 then
 	## Build User
 	dscl . -create /Users/"$usernameselected"
