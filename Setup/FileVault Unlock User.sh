@@ -9,14 +9,14 @@ then
 fi
 
 passwordselected=$(osascript -e 'set userpw to the text returned of (display dialog "Please enter the desired password. (Must be at least 15 characters long uppercase, lowercase, numbers and symbols)" default answer "" buttons {"Cancel", "Continue"} default button "Continue" with hidden answer)')
-if [[ -z $passwordselected ]]
+if [[ -z $passwordselected ]] && [[ $(echo $passwordselected | wc -m) -lt 15 ]]
 then
 	echo "This value cannot be blank."
 	exit 1
 fi
 
 adminusername=$(osascript -e 'set adminname to the text returned of (display dialog "What is the administrator username?" default answer "" buttons {"Cancel", "Continue"} default button "Continue")')
-if [[ -z $adminusername ]]
+if [[ -z $adminusername ]] && [[ ! -z $(ls /Users | grep "$adminusername") ]]
 then
 	echo "This value cannot be blank."
 	exit 1
@@ -26,6 +26,13 @@ adminuserpassword=$(osascript -e 'set adminpw to the text returned of (display d
 if [[ -z $adminuserpassword ]]
 then
 	echo "This value cannot be blank."
+	exit 1
+fi
+
+## Check for FileVault
+if [[ $(fdesetup status) == "FileVault is Off." ]]
+then
+	echo "FileVault is off"
 	exit 1
 fi
 
