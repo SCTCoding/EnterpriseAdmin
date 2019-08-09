@@ -1,0 +1,18 @@
+#! /bin/bash
+
+loggedInUser=$(stat -f "%Su" /dev/console)
+
+profileName=$(cat /Users/$loggedInUser/Library/Application\ Support/Firefox/profiles.ini | grep "Default=Profiles" | cut -d '/' -f2)
+
+profileDir="/Users/$loggedInUser/Library/Application Support/Firefox/Profiles"
+
+homePage=$(cat "$profileDir/$profileName"/prefs.js | grep '"browser.startup.homepage",' | cut -d ',' -f2 | cut -d '"' -f2)
+
+if [[ $(cat "$profileDir/$profileName"/prefs.js | grep -c '"browser.startup.homepage",') -eq 1 ]]
+then
+	sed -i '' "s/$homePage/www.jamf.com/g" "$profileDir/$profileName/prefs.js"
+else
+	echo 'user_pref("browser.startup.homepage", "www.jamf.com");' >> "$profileDir/$profileName"/prefs.js
+fi
+
+exit 0
