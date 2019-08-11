@@ -2,7 +2,6 @@
 
 #Global Variables
 policyID=""
-logDEP="/private/tmp/installDEP-$policyID.txt"
 loggedInUser=$(stat -f%Su /dev/console)
 loggedInUID=$(id -u $loggedInUser)
 
@@ -30,22 +29,22 @@ showWebsite="NO" ## YES or NO
 #############################################################################
 ## Prepare to run
 ## Remove old logs if they exist.
-if [[ -d "$logDEP" ]]
+if [[ -f "/private/tmp/installDEP-$policyID.txt" ]]
 then
-	rm "$logDEP"
+	rm /private/tmp/installDEP-$policyID.txt
 fi
 
 ## Make the log file and then permission so everyone can read and write the file.
-touch "$logDEP"
-chmod 666 "$logDEP"
+touch /private/tmp/installDEP-$policyID.txt
+chmod 666 /private/tmp/installDEP-$policyID.txt
 
 ## Setup the inital log with the inital values.
-echo "Command: KillCommandFile" >> "$logDEP"
-echo "Command: MainTitle: Executing Policy XYZ" >> "$logDEP"
-echo "Command: Determinate: 5" >> "$logDEP"
-echo "Command: Image: " >> "$logDEP"
-echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> "$logDEP"
-echo "Command: MainText: Please wait while the policy runs..." >> "$logDEP"
+echo "Command: KillCommandFile" >> /private/tmp/installDEP-$policyID.txt
+echo "Command: MainTitle: Executing Policy XYZ" >> /private/tmp/installDEP-$policyID.txt
+echo "Command: Determinate: 5" >> /private/tmp/installDEP-$policyID.txt
+echo "Command: Image: " >> /private/tmp/installDEP-$policyID.txt
+echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> /private/tmp/installDEP-$policyID.txt
+echo "Command: MainText: Please wait while the policy runs..." >> /private/tmp/installDEP-$policyID.txt
 
 
 #############################################################################
@@ -107,14 +106,14 @@ if [[ -d "/Applications/Utilities/DEPNotify.app" ]]
 then
 	if [[ -f "/Users/$loggedInUser/Library/Preferences/menu.nomad.DEPNotify.plist" ]]
 	then
-		sudo -u $loggedInUser open -a /Applications/Utilities/DEPNotify.app --args -path "$logDEP"
+		sudo -u $loggedInUser open -a /Applications/Utilities/DEPNotify.app --args -path /private/tmp/installDEP-$policyID.txt
 	else
-		rm "$logDEP"
+		rm /private/tmp/installDEP-$policyID.txt
 		rm /Users/"$loggedInUser"/Library/Preferences/menu.nomad.DEPNotify.plist
 		exit 1	
 	fi
 else
-	rm "$logDEP"
+	rm /private/tmp/installDEP-$policyID.txt
 	exit 1
 fi
 
@@ -126,32 +125,32 @@ if [[ $needsInput == "YES" ]]
 then
 	if [[ -z "$step1Command" ]]
 	then
-		echo "Command: ContinueButtonRegister: Continue" >> "$logDEP"
+		echo "Command: ContinueButtonRegister: Continue" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Command: WindowStyle: Activate" >> "$logDEP"
+		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Status: Beginning Process..." >> "$logDEP"
+		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		## Insert Do Something Here
 	else
-		echo "Command: ContinueButtonRegister: Continue" >> "$logDEP"
+		echo "Command: ContinueButtonRegister: Continue" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Command: WindowStyle: Activate" >> "$logDEP"
+		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Status: Beginning Process..." >> "$logDEP"
+		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		jamf policy -event $step2Command
 	fi
 
 else
 	if [[ -z "$step1Command" ]]
 	then
-		echo "Command: WindowStyle: Activate" >> "$logDEP"
+		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Status: Beginning Process..." >> "$logDEP"
+		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		## Insert Do Something Here
 	else
-		echo "Command: WindowStyle: Activate" >> "$logDEP"
+		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Status: Beginning Process..." >> "$logDEP"
+		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		jamf policy -event $step2Command
 	fi
 fi
@@ -163,18 +162,18 @@ if [[ -z "$step2Command" ]]
 then
 	if [[ $showWebsite == "YES" ]]
 	then
-		echo "Command: Website: https://apple.com"  >> "$logDEP"
+		echo "Command: Website: https://apple.com"  >> /private/tmp/installDEP-$policyID.txt
 	fi
 
-	echo "Status: ..." >> "$logDEP"
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	## Insert Do Something Here
 else
 	if [[ "$showWebsite" == "YES" ]]
 	then
-		echo "Command: Website: https://apple.com"  >> "$logDEP"
+		echo "Command: Website: https://apple.com"  >> /private/tmp/installDEP-$policyID.txt
 	fi
 
-	echo "Status: ..." >> "$logDEP"
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	jamf policy -event $step2Command
 fi
 #############################################################################
@@ -186,7 +185,7 @@ then
 	echo "Status: ..." >> '$logDEP'
 	## Insert Do Something Here
 else
-	echo "Status: ..." >> "$logDEP"
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	jamf policy -event $step3Command
 fi
 #############################################################################
@@ -195,10 +194,10 @@ fi
 ## Step 4
 if [[ -z "$step4Command" ]]
 then
-	echo "Status: ..." >> "$logDEP"
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	## Insert Do Something Here
 else
-	echo "Status: ..." >> "$logDEP"
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	jamf policy -event $step4Command
 fi
 #############################################################################
@@ -207,16 +206,16 @@ fi
 ## Step 5
 if [[ -z "$step5Command" ]]
 then
-	echo "Command: WindowStyle: Activate" >> "$logDEP"
-	echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> "$logDEP"
-	echo "Command: MainText: Please wait while the policy runs..." >> "$logDEP"
-	echo "Status: Finishing Up..." >> "$logDEP"
+	echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
+	echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> /private/tmp/installDEP-$policyID.txt
+	echo "Command: MainText: Please wait while the policy runs..." >> /private/tmp/installDEP-$policyID.txt
+	echo "Status: Finishing Up..." >> /private/tmp/installDEP-$policyID.txt
 	## Insert Do Something Here
 else
-	echo "Command: WindowStyle: Activate" >> "$logDEP"
-	echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> "$logDEP"
-	echo "Command: MainText: Please wait while the policy runs..." >> "$logDEP"
-	echo "Status: Finishing Up..." >> "$logDEP"
+	echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
+	echo "Command: MainTextImage: /private/tmp/resourceImages/main.png" >> /private/tmp/installDEP-$policyID.txt
+	echo "Command: MainText: Please wait while the policy runs..." >> /private/tmp/installDEP-$policyID.txt
+	echo "Status: Finishing Up..." >> /private/tmp/installDEP-$policyID.txt
 	jamf policy -event $step5Command
 fi
 #############################################################################
@@ -226,12 +225,12 @@ fi
 sleep 2.0
 
 ## Kill DEPNotify
-echo "Command: Quit" >> "$logDEP"
+echo "Command: Quit" >> /private/tmp/installDEP-$policyID.txt
 
 ## Delete the DEP log
-if [[ -d "$logDEP" ]]
+if [[ -f "/private/tmp/installDEP-$policyID.txt" ]]
 then
-	rm "$logDEP"
+	rm /private/tmp/installDEP-$policyID.txt
 fi
 
 ## Delete any other created files.
