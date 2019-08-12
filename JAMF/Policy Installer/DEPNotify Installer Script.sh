@@ -26,6 +26,9 @@ step5Command=""
 ## Website
 showWebsite="NO" ## YES or NO
 
+## Fields
+## Be sure to fill in fields if you are using the needs input settings.
+
 #############################################################################
 ## Prepare to run
 ## Remove old logs if they exist.
@@ -104,13 +107,18 @@ fi
 ## Start DEP Notify
 if [[ -d "/Applications/Utilities/DEPNotify.app" ]]
 then
-	if [[ -f "/Users/$loggedInUser/Library/Preferences/menu.nomad.DEPNotify.plist" ]]
+	if [[ $needsInput == "YES" ]]
 	then
-		sudo -u $loggedInUser open -a /Applications/Utilities/DEPNotify.app --args -path /private/tmp/installDEP-$policyID.txt
+		if [[ -f "/Users/$loggedInUser/Library/Preferences/menu.nomad.DEPNotify.plist" ]]
+		then
+			sudo -u $loggedInUser open -a /Applications/Utilities/DEPNotify.app --args -path /private/tmp/installDEP-$policyID.txt
+		else
+			rm /private/tmp/installDEP-$policyID.txt
+			rm /Users/"$loggedInUser"/Library/Preferences/menu.nomad.DEPNotify.plist
+			exit 1	
+		fi
 	else
-		rm /private/tmp/installDEP-$policyID.txt
-		rm /Users/"$loggedInUser"/Library/Preferences/menu.nomad.DEPNotify.plist
-		exit 1	
+		sudo -u $loggedInUser open -a /Applications/Utilities/DEPNotify.app --args -path /private/tmp/installDEP-$policyID.txt
 	fi
 else
 	rm /private/tmp/installDEP-$policyID.txt
@@ -127,14 +135,30 @@ then
 	then
 		echo "Command: ContinueButtonRegister: Continue" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
+		while [[ 1 == 1 ]]
+		do
+			if [[ ! -f "/var/tmp/com.depnotify.registration.done" ]]
+			then
+				sleep 1.0
+			else
+				break
+			fi
+		done
 
 		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		## Insert Do Something Here
 	else
 		echo "Command: ContinueButtonRegister: Continue" >> /private/tmp/installDEP-$policyID.txt
 
-		echo "Command: WindowStyle: Activate" >> /private/tmp/installDEP-$policyID.txt
+		while [[ 1 == 1 ]]
+		do
+			if [[ ! -f "/var/tmp/com.depnotify.registration.done" ]]
+			then
+				sleep 1.0
+			else
+				break
+			fi
+		done
 
 		echo "Status: Beginning Process..." >> /private/tmp/installDEP-$policyID.txt
 		jamf policy -event $step2Command
@@ -182,7 +206,7 @@ fi
 ## Step 3
 if [[ -z "$step3Command" ]]
 then
-	echo "Status: ..." >> '$logDEP'
+	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
 	## Insert Do Something Here
 else
 	echo "Status: ..." >> /private/tmp/installDEP-$policyID.txt
