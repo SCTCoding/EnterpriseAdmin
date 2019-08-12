@@ -28,6 +28,28 @@ showWebsite="NO" ## YES or NO
 
 ## Fields
 ## Be sure to fill in fields if you are using the needs input settings.
+inputTitle=""
+inputPicture=""
+
+field1Title=""
+field1PlaceHolder=""
+mandatoryField1="" # true/false
+
+field2Title=""
+field2PlaceHolder=""
+mandatoryField2="" # true/false
+
+popup1Title=""
+popup1Options=''
+
+popup2Title=""
+popup2Options=''
+
+popup3Title=""
+popup3Options=''
+
+popup4Title=""
+popup4Options=''
 
 #############################################################################
 ## Prepare to run
@@ -54,52 +76,52 @@ echo "Command: MainText: Please wait while the policy runs..." >> /private/tmp/i
 ## Registration Dialog Needed
 if [[ $needsInput == "YES" ]]
 then
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify registrationMainTitle ""
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify registrationPicturePath ""
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify registrationMainTitle "$inputTitle"
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify registrationPicturePath "$inputPicture"
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify registrationButtonLabel "Continue"
 
 	if [[ $textField1 == "YES" ]]
 	then
 		## Text Field 1
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1Placeholder ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1IsOptional -bool false
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1Label "$field1Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1Placeholder "$field1PlaceHolder"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField1IsOptional -bool $mandatoryField1
 	fi
 
 	if [[ $textField2 == "YES" ]]
 	then
 		## Text Field 2
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2Placeholder ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2IsOptional -bool false
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2Label "$field2Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2Placeholder "$field2PlaceHolder"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify textField2IsOptional -bool $mandatoryField2
 	fi
 
 	if [[ $popupMenu1 == "YES" ]]
 	then
 		## Popup Menu 1
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton1Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton1Content -array "" ""
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton1Label "$popup1Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton1Content -array $popup1Options
 	fi
 
 	if [[ $popupMenu2 == "YES" ]]
 	then
 		## Popup Menu 2
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton2Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton2Content -array "" ""
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton2Label "popup2Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton2Content -array $popup2Options
 	fi
 
 	if [[ $popupMenu3 == "YES" ]]
 	then
 		## Popup Menu 3
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton3Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton3Content -array "" ""
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton3Label "popup3Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton3Content -array $popup3Options
 	fi
 	
 	if [[ $popupMenu4 == "YES" ]]
 	then
 		## Popup Menu 4
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton4Label ""
-		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton4Content -array "" ""
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton4Label "popup4Title"
+		/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" defaults write menu.nomad.DEPNotify popupButton4Content -array $popup4Options
 	fi
 fi
 
