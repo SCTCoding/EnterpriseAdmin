@@ -2,7 +2,7 @@
 
 ##########
 # This extension attribute collects if an application is installed 
-# and reports Installed version or not installed.
+# and reports installed version or not installed.
 ##########
 
 
@@ -22,7 +22,7 @@ appCheck=$(/usr/local/bin/osqueryi --header=false --line "select name, bundle_sh
 ## Primary check logic. Outputs application name and version.
 if [[ ! -z "$appCheck" ]]
 then
-  echo "<result>Installed $(echo $appCheck | cut -d '|' -f2 | tail -n1)</result>"
+  echo "<result>$(echo $appCheck | cut -d '|' -f2 | tail -n1)</result>"
 else
   echo "<result>Not Installed</result>"
 fi
