@@ -8,12 +8,13 @@
 
 ## Global variables
 applicationName=""
-osqueryEvent=""
 
 ## Check if osquery present. If not fix it.
 if [[ ! -f "/usr/local/bin/osqueryi" ]]
 then
-  jamf policy -event "$osqueryEvent"
+  ## If OSQuery not present mark as such. Use any attribute with this possible field as an indicator to install osquery.
+  echo <result>OSQuery Not Installed</result>
+  exit 0
 fi
 
 ## Check for application
