@@ -7,6 +7,7 @@
 
 
 ## Global variables
+## Include .app at the end of the name.
 applicationName=""
 
 ## Check if osquery present. If not fix it.
