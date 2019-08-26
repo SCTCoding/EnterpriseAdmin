@@ -1,14 +1,15 @@
 #! /bin/bash
 
 ##########
-# This extension attribute collects if an application is installed 
-# and reports installed version or not installed.
+# This extension attribute collects some set of specified kernel extensions if loaded.
 ##########
 
 
 ## Global variables
-## Include .app at the end of the name.
-applicationName=""
+## Be sure to use % as your wild card. com.apple.%
+kernelSearch=""
+LIKE or NOT
+version=""
 
 ## Check if osquery present. If not fix it.
 if [[ ! -f "/usr/local/bin/osqueryi" ]]
@@ -19,19 +20,14 @@ then
 fi
 
 ## Check for application
-appCheck=$(/usr/local/bin/osqueryi --header=false --list "select name, bundle_short_version from apps where name is \"$applicationName\"")
-
-## Primary check logic. Outputs application name and version.
-if [[ ! -z "$appCheck" ]]
+if [[ "$version" == "LIKE" ]]
 then
-  if [[ ! -z $(echo $appCheck | cut -d '|' -f2 | tail -n1) ]]
-  then
-    echo "<result>$(echo $appCheck | cut -d '|' -f2 | tail -n1)</result>"
-  else
-    echo "<result>Installed</result>"
-  fi
-else
-  echo "<result>Not Installed</result>"
+  kextList=$(/usr/local/bin/osqueryi --header=false --list "select name from kernel_extensions where name like \"$kernelSearch\" and name like \"__kernel__\";" | awk 'BEGIN{ORS=", ";} {print;}')
+elif [[ "$version" == "NOT" ]]
+then
+  kextList=$(/usr/local/bin/osqueryi --header=false --list "select name from kernel_extensions where name not like \"$kernelSearch\" and name not like \"__kernel__\";" | awk 'BEGIN{ORS=", ";} {print;}')
 fi
+
+echo "<result>$kextList</result>"
 
 exit 0
