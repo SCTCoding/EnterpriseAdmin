@@ -8,7 +8,7 @@
 ## Global variables
 ## Be sure to use % as your wild card. com.apple.%
 kernelSearch=""
-LIKE or NOT
+## LIKE or NOT
 version=""
 
 ## Check if osquery present. If not fix it.
