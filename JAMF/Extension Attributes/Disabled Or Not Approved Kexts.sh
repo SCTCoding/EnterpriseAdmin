@@ -7,9 +7,11 @@ if [[ -f '/var/db/SystemPolicyConfiguration/KextPolicy' ]]
 then
 	## Find any disabled kexts.
 	kextsDisabled=$(sqlite3 -list -separator ', ' /var/db/SystemPolicyConfiguration/KextPolicy 'select bundle_id, team_id from kext_policy where allowed = 0 group by team_id;')
+	## Setup output array
 	output=()
 	for kext in "${kextsDisabled[@]}"
 	do
+		## Append to array
 		output+="$kext "
 	done
 
