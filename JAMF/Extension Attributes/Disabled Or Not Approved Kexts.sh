@@ -18,9 +18,9 @@ then
 	## Evaluate the output
 	if [[ $(echo "$output" | grep -c "," ) -ge 1 ]]
 	then
-		echo "<result>Unapproved Kexts: $output</result>"
+		echo "<result>Kexts Not Approved: $output</result>"
 	else
-		echo "<result>All Kexts Approved</result>"
+		echo "<result>Kexts Approved</result>"
 	fi
 else
 	echo "<result>No KextPolicy Database</result>"
