@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# Find all computers with Kexts that are not approved. Dump to an attribute.
+## Find all computers with Kexts that are not approved. Dump to an attribute.
 
 ## Determine if the policy file is there.
 if [[ -f '/var/db/SystemPolicyConfiguration/KextPolicy' ]]
