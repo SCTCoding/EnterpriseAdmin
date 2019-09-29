@@ -23,6 +23,7 @@ then
 		echo "<result>Kexts Approved</result>"
 	fi
 else
+	## Should only happen pre 10.13
 	echo "<result>No Kext Policy Database</result>"
 fi
 
