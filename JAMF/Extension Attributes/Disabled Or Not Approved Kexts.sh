@@ -23,7 +23,7 @@ then
 		echo "<result>Kexts Approved</result>"
 	fi
 else
-	echo "<result>No KextPolicy Database</result>"
+	echo "<result>No Kext Policy Database</result>"
 fi
 
 exit 0
