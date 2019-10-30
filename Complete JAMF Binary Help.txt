@@ -215,7 +215,9 @@ Usage:	 jamf createAccount -username <username> -realname <Real Name>
 
 	 -networkUser 			 Creates an account with a UID over 1025
 
-	 -secureSSH 			 Modifies the group com.apple.ssh_access to restrict access to only this user	 -suppressSetupAssistant 	 The Setup Assistant will not show on first login for this user
+	 -secureSSH 			 Modifies the group com.apple.ssh_access to restrict access to only this user	 
+
+	 -suppressSetupAssistant 	 The Setup Assistant will not show on first login for this user
 
 
 Usage:	 jamf createConf [-url <url>]
