@@ -1,5 +1,9 @@
 
-Usage:	 jamf aboutUsage (Active Directory built into macOS):
+Usage:	 jamf about
+
+
+
+Usage (Active Directory built into macOS):
 	 jamf bind -type ad -domain <domain> [-computerID <computerID>]
 		 -username <username> -password <password> -ou <Computer OU> 
 		 [-cache] [-requireConfirmation] [-localHomes] [-useUNCPath] 
@@ -118,6 +122,10 @@ Usage (Active Directory using Centrify):
 	 -overwriteExistingRecord 		 Overwrite the existing record [Centrify Only]
 
 	 -doNotUpdatePAMAndDSConfig 		 Do not update PAM and Directory Service configuration [Centrify Only]
+
+
+
+
 Usage:	 jamf bless -target <path to target> [-setOF]
 	 jamf bless -bootargs <boot-args> -bootfile <boot-file> -bootdevice <bootdevice>
 
@@ -140,7 +148,15 @@ Usage:	 jamf bless -target <path to target> [-setOF]
 Notes:	 You can use the -target flag to make a drive bootable. 
 	 The boot args command can be used to make a NetBoot server the 
 	 default device.
-Usage:	jamf canRunOnThisOSXVersionUsage:	 jamf changePassword -username <username> [-password <password>] [-passhash <passhash>] [-oldPassword <oldPass>] [-oldPasshash <oldhash>]
+
+
+
+
+Usage:	jamf canRunOnThisOSXVersion
+
+
+
+Usage:	 jamf changePassword -username <username> [-password <password>] [-passhash <passhash>] [-oldPassword <oldPass>] [-oldPasshash <oldhash>]
 
 
 	 -username			The username for which to change the password
@@ -152,6 +168,10 @@ Usage:	jamf canRunOnThisOSXVersionUsage:	 jamf changePassword -username <usernam
 	 -oldPassword			The old/current password of the user
 
 	 -oldPasshash			The hash of the old/current password of the user
+
+
+
+
 Usage:	 jamf checkJSSConnection [-retry x]
 
 	 -retry 	 The number of times the connection should be tested
@@ -164,7 +184,11 @@ Usage:	 jamf checkJSSConnection [-retry x]
 
 
  Others: 
-	-allowInvalidCertificate 	 Overrides certificate verification. This value is ignored if SSL validation is set to "always". Must be run as root.Usage:	 jamf createAccount -username <username> -realname <Real Name> 
+	-allowInvalidCertificate 	 Overrides certificate verification. This value is ignored if SSL validation is set to "always". Must be run as root.
+
+
+
+Usage:	 jamf createAccount -username <username> -realname <Real Name> 
 		 [-password <password>] [-passhash <passhash>] [-home </path/to/home/directory>] 
 		 [-hint <hint>] [-shell <shell>] [-picture <picture>]
 		 [-admin] [-secureSSH] [-hiddenUser] [-networkUser] [-suppressSetupAssistant]
@@ -211,6 +235,10 @@ Usage:	 jamf createConf [-url <url>]
 	 -allowInvalidCertificate 	 (Deprecated) Equivalent to '-verifySSLCert never'
 
 	 -k 				 (Deprecated) Equivalent to '-verifySSLCert never'
+
+
+
+
 Usage:	 jamf createHooks [-target <path>] [-policies] [-mcx] [-log] [-hideRestore] [-background] [-displayStatus]
 
 	 -target 		 The target drive used to create login/logout hooks
@@ -225,7 +253,11 @@ Usage:	 jamf createHooks [-target <path>] [-policies] [-mcx] [-log] [-hideRestor
 
 	 -background 		 Performs actions in the background during login
 
-	 -displayStatus 	 Enables the progress display for login/logoutUsage:  jamf createSetupDone [-target <path to disk>] [-suppressSetupAssistant]
+	 -displayStatus 	 Enables the progress display for login/logout
+
+
+
+Usage:  jamf createSetupDone [-target <path to disk>] [-suppressSetupAssistant]
 
 	-target                	 If given, the drive that the Setup Assistant will be suppressed on.
 	                       	 Defaults to the boot drive.
@@ -243,7 +275,11 @@ Usage:	 jamf createStartupItem [-target <path>] [-policies] [-ssh] [-log] [-mcx]
 
 	 -ssh 			 The startup script will ensure that SSH is running.
 
-	 -mcx 			 The startup script enforces System Level MCX settings.Usage:	 jamf deleteAccount -username <username> [-backupTo </path/to/dmg>] [-deleteHomeDirectory]
+	 -mcx 			 The startup script enforces System Level MCX settings.
+
+
+
+Usage:	 jamf deleteAccount -username <username> [-backupTo </path/to/dmg>] [-deleteHomeDirectory]
 
 	 -username 		 Deletes the user's account
 
@@ -251,15 +287,35 @@ Usage:	 jamf createStartupItem [-target <path>] [-policies] [-ssh] [-log] [-mcx]
 				 If the home directory is not specified, the default will be 
 				 '/Users/Deleted Users/<user name>.dmg'.
 
-	 -deleteHomeDirectory 	 Do not archive the user's home directoryUsage:	 jamf deletePrinter -cupsName <cups name>
+	 -deleteHomeDirectory 	 Do not archive the user's home directory
 
-	 -cupsName 		 The CUPS name of the printer.Usage:	 jamf deleteSetupDone -target <path to disk>
 
-	 -target 		 The drive that the setup file will be delete from.Usage:	 jamf displayMessage -message <message>
 
-	 -message 		 The message to be displayed.Usage:	 jamf enablePermissions -target <path to disk>
+Usage:	 jamf deletePrinter -cupsName <cups name>
 
-	 -target 		 The drive that the permissions will be enabled on.Usage:	 jamf encryptDisk -username <username> [-password <password>] 
+	 -cupsName 		 The CUPS name of the printer.
+
+
+
+Usage:	 jamf deleteSetupDone -target <path to disk>
+
+	 -target 		 The drive that the setup file will be delete from.
+
+
+
+Usage:	 jamf displayMessage -message <message>
+
+	 -message 		 The message to be displayed.
+
+
+
+Usage:	 jamf enablePermissions -target <path to disk>
+
+	 -target 		 The drive that the permissions will be enabled on.
+
+
+
+Usage:	 jamf encryptDisk -username <username> [-password <password>] 
 		 [-passhash <passhash>] [-pathToCertificate <certificate>]
 		 [-defer] [-noRecoveryKey] [-prompt] 
 
@@ -279,7 +335,11 @@ Usage:	 jamf createStartupItem [-target <path>] [-policies] [-ssh] [-log] [-mcx]
 
 	 -authRestart 		 Performs authenticated restart after filevault encryption is complete
 
-	 -type 			 The type of disk encryption you want to use. FileVault 2 is the default disk encryption type. Usage:	 jamf enroll [-prompt | -invitation] [-noRecon] [-noManage]
+	 -type 			 The type of disk encryption you want to use. FileVault 2 is the default disk encryption type. 
+
+
+
+Usage:	 jamf enroll [-prompt | -invitation] [-noRecon] [-noManage]
 
 
 	 -prompt		 Prompts for JSS and SSH credentials.
@@ -323,24 +383,60 @@ Return Codes:
 	 -reenroll		 Used when changing the Certificate Authority the device certificate is issued by.
 
 	 -archiveDeviceCertificate	 Will archive the JAMF.keychain (if it exists) to a backup folder before replacing it with a new one.
-	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.Usage:	 jamf fixByHostFiles -target <path to disk> [-duplicate]
+	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.
 
-	 -target 		 The root of the drive or folder that will be updated.Usage:	 jamf fixDocks 
+
+
+Usage:	 jamf fixByHostFiles -target <path to disk> [-duplicate]
+
+	 -target 		 The root of the drive or folder that will be updated.
+
+
+
+Usage:	 jamf fixDocks 
+
+
+
+
 Usage:	 jamf fixPermissions [-target <path to disk>]
 
 	 -target 		 If given, the drive that the permissions will be fixed on.
-	         		 Defaults to the boot drive.Usage:	 jamf flushCaches [-flushSystem] [-flushUsers]
+	         		 Defaults to the boot drive.
+
+
+
+Usage:	 jamf flushCaches [-flushSystem] [-flushUsers]
 
 	 -flushSystem 	 Flush all System Caches.
 
 	 -flushUsers 	 Flush all caches in the user's home directories.
-Usage:	 jamf flushPolicyHistoryUsage:	 jamf getARDFields -target <path to disk>
 
-	 -target 		 The drive that the ARD fields will be display from.Usage:	 jamf getComputerName -target <path to disk>
 
-	 -target 		 The drive that the computer name will be displayed from.Usage:	 jamf help <verb>
 
-	 <verb> 		 The verb you would like help for.Usage:	 jamf install -package <filename> -path <path to file> -target <volume>
+
+Usage:	 jamf flushPolicyHistory
+
+
+
+Usage:	 jamf getARDFields -target <path to disk>
+
+	 -target 		 The drive that the ARD fields will be display from.
+
+
+
+Usage:	 jamf getComputerName -target <path to disk>
+
+	 -target 		 The drive that the computer name will be displayed from.
+
+
+
+Usage:	 jamf help <verb>
+
+	 <verb> 		 The verb you would like help for.
+
+
+
+Usage:	 jamf install -package <filename> -path <path to file> -target <volume>
 		 [-fut] [-feu] [-showProgress] 
 
 	 -package 		 The filename of the package that will be installed.
@@ -382,9 +478,21 @@ Usage:	 jamf flushPolicyHistoryUsage:	 jamf getARDFields -target <path to disk>
 
 	 -httpUsername 		 The user name to use if path is an http address and the auth method is username. 
 
-	 -httpPasshash 		 The password to use if path is an http address and the auth method is username. Usage:	 jamf installAllCached
+	 -httpPasshash 		 The password to use if path is an http address and the auth method is username. 
 
-Usage:	 jamf launchAgentUsage:	 jamf launchDaemon [-monitorUsage] [-enforceRestrictions] [-listenForUserNotifications] [-monitorBeacons]
+
+
+Usage:	 jamf installAllCached
+
+
+
+
+
+Usage:	 jamf launchAgent
+
+
+
+Usage:	 jamf launchDaemon [-monitorUsage] [-enforceRestrictions] [-listenForUserNotifications] [-monitorBeacons]
 
 	 -monitorUsage			 Monitors application usage.
 
@@ -392,7 +500,11 @@ Usage:	 jamf launchAgentUsage:	 jamf launchDaemon [-monitorUsage] [-enforceRestr
 
 	 -listenForUserNotifications	 Enables end user interaction with Notification Center (10.8 and above).
 
-	 -monitorBeacons		 Enables monitoring for iBeacons.Usage: 	 jamf listPrinters 
+	 -monitorBeacons		 Enables monitoring for iBeacons.
+
+
+
+Usage: 	 jamf listPrinters 
 
 Notes: 	 Gathers installed printers and displays information
 	 such as names, locations, device URIs and models.
@@ -402,13 +514,25 @@ Usage:	 jamf listUsers [-showAll] [-sizes]
 
 	 -showAll 	 Shows system users with unique ID numbers less than 500
 
-	 -sizes 	 Calculates the size of a user’s home directoryUsage:	 jamf log [-action <reboot | login | logout>] [-username <username>]
+	 -sizes 	 Calculates the size of a user’s home directory
+
+
+
+Usage:	 jamf log [-action <reboot | login | logout>] [-username <username>]
 
 
 	 -action 		 The action to log (reboot, login or logout)
 
 	 -username 		 The name of the user logging in or out.
-Usage: 	 jamf manage Notes: 	 This verb enforces the entire management framework from the JSS, 
+
+
+
+
+Usage: 	 jamf manage 
+
+
+
+Notes: 	 This verb enforces the entire management framework from the JSS, 
 	 including scheduled tasks, the restricted applications, and the Global Management settings, such as the startup 
 	 script and login/logout hooks.
 
@@ -443,6 +567,10 @@ Usage:  jamf mapPrinter -cupsName <cups compliant name> -displayName <display na
 				 the system.
 
 	 -shared     		 Make this printer the shared printer
+
+
+
+
 Usage:	 jamf mcx
 
 Usage:	 jamf mcx -username <username>
@@ -453,11 +581,19 @@ Usage:	 jamf mcx -username <username>
 
 Notes:	 When run without the -username flag, Managed Preferences are applied for the Computer Level.
 
+
+
+
+
 Usage: 	 jamf mdm [-userLevelMdm]
 
 Notes: 	 This verb prepares the computer for use with MDM commands.
 
-	-userLevelMdm 			 Allows the MDM profile to be installed at the user level.	-localUsername 			 Optional local username to install the user level MDM to.
+	-userLevelMdm 			 Allows the MDM profile to be installed at the user level.
+
+
+
+	-localUsername 			 Optional local username to install the user level MDM to.
 
 
 Usage:	 jamf modifyDock -file <file name> [-leaveRunning] [-beginning] [-remove]
@@ -474,6 +610,10 @@ Usage:	 jamf modifyDock -id <dock_item_id> [-leaveRunning] [-beginning] [-remove
 	 -beginning 		 The item will be placed at the beginning (left side) of the Dock.
 
 	 -remove 		 The item will be removed instead of added.
+
+
+
+
 Usage:	 jamf mount -server <ip or DNS name> -share <share name> [-type <afp | smb>]
 		 -username <username> [-password <password>] [-pashhash <pashhash>]
 		 [-port <port>] [-workgroup <workgroup>] [-visible]
@@ -502,6 +642,10 @@ Usage:	 jamf mount -server <ip or DNS name> -share <share name> [-type <afp | sm
 	 -workgroup 		 The workgroup or domain for the SMB type
 
 	 -visible 		 Specify that the share should be visible in the Finder
+
+
+
+
 Usage:	 jamf policy [-event <event>] [-username <username>] [-id <policy_id>] [-forceNoRecon]
 
 	-event		The event or trigger that the policy is associated with in the JSS. Historical synonyms include –trigger and –action.
@@ -580,7 +724,11 @@ Return Codes:
 
 	-skipAppUpdates		Will not attempt to update the JAMF Binary or other apps. Overrides the -forceAppUpdates option.
 
-	-retrySeconds		How many seconds this policy will attempt to run while waiting for other policies to finish executing.Usage:	 jamf reboot [-minutes <minutes>] [-message <message>] [-background] [-immediately]
+	-retrySeconds		How many seconds this policy will attempt to run while waiting for other policies to finish executing.
+
+
+
+Usage:	 jamf reboot [-minutes <minutes>] [-message <message>] [-background] [-immediately]
 
 
 	 -minutes 		 The minutes until the machine should reboot
@@ -688,9 +836,25 @@ Return Codes:
 	 -reenroll		 Used when changing the Certificate Authority the device certificate is issued by.
 
 	 -archiveDeviceCertificate	 Will archive the JAMF.keychain (if it exists) to a backup folder before replacing it with a new one.
-	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.Usage:	jamf removeFramework	-keepMDM 		 Leaves the MDM management in place.
+	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.
+
+
+
+Usage:	jamf removeFramework
+
+
+
+	-keepMDM 		 Leaves the MDM management in place.
+
+
+
+
 
 Usage:	 jamf removeSWUSettings
+
+
+
+
 
 Usage:	 jamf resetPassword -username <username> [-password <password>] [-passhash <passhash>]
 
@@ -700,6 +864,10 @@ Usage:	 jamf resetPassword -username <username> [-password <password>] [-passhas
 	 -password			The new password for the user
 
 	 -passhash			The hash of the new password for the user
+
+
+
+
 Usage:	 jamf runScript -script <file name> -path <path to script> [-computerName <computerName>]
 		 [-target <target volume>] [-username <username>] [-p1 <parameter 1>] [-p2 <parameter 2>] 
 		 [-p3 <parameter 3>] [-p4 <parameter 4>] [-p5 <parameter 5>] [-p6 <parameter 6>] 
@@ -732,7 +900,11 @@ Notes: 	 Parameters in scripts created for use with the Casper Suite must be
 		 Parameter 5 
 		 Parameter 6 
 		 Parameter 7 
-		 Parameter 8 Usage:	 jamf runSoftwareUpdate  -server [server:port] [-setPrefOnly] [-fromApple]
+		 Parameter 8 
+
+
+
+Usage:	 jamf runSoftwareUpdate  -server [server:port] [-setPrefOnly] [-fromApple]
 
 
 	 -server 		 The server which the Software Update service should look to
@@ -740,6 +912,10 @@ Notes: 	 Parameters in scripts created for use with the Casper Suite must be
 	 -setPrefOnly 		 Point SWU to the server, but do not run
 
 	 -fromApple 		 Run Software Update from Apple, not a hosted server
+
+
+
+
 Usage:	 jamf scheduledTask -command <command> -name <name> [-id <id>] [-user <user>]
 		 [-month <month>] [-day <day>] [-hour <hour>] [-minute <minute>]
 
@@ -785,6 +961,10 @@ Usage:	 jamf setARDFields -target <target volume> -1 <field 1> -2 <field 2> -3 <
 	 -3 			 The third field for Apple Remote Desktop
 
 	 -4 			 The fourth field for Apple Remote Desktop
+
+
+
+
 Usage:	 jamf setComputerName [-target <target volume>] [-name <name>]
 		 [-useMACAddress] [-useSerialNumber] [-suffix <suffix>]
 		 [-prefix <prefix>] [-fromFile <path to file>]
@@ -803,6 +983,10 @@ Usage:	 jamf setComputerName [-target <target volume>] [-name <name>]
 	 -suffix 		 Add this suffix to the MAC Address or Serial Number
 
 	 -fromFile 		 The path to a CSV file containing the computer's MAC Address or Serial Number followed by the desired name
+
+
+
+
 Usage:	 jamf setHomePage -homepage <homepage> [-feu] [-fut] [-username <username>]
 		 [-removeDownloadLocation] [-skipIE] [-skipFirefox] [-skipMozilla] [-skipSafari]
 
@@ -828,6 +1012,10 @@ Usage:	 jamf setHomePage -homepage <homepage> [-feu] [-fut] [-username <username
 	 -skipMozilla 		 Do not set the homepage for Mozilla based browsers (Netscape)
 
 	 -skipSafari 		 Do not set the homepage for Safari
+
+
+
+
 Usage:	 jamf setOFP -mode <none | command | full> [-passhash <passhash>] [-password <password>]
 
 
@@ -842,7 +1030,15 @@ Usage:	 jamf setOFP -mode <none | command | full> [-passhash <passhash>] [-passw
 	 -passhash 		 The hash to set the security-password to in Open Firmware
 
 	 -password 		 The password to set the security-password to in Open Firmware
+
+
+
+
 Usage:	 jamf startSSH
+
+
+
+
 
 Usage: 	 jamf trustJSS 
 
@@ -860,15 +1056,31 @@ Usage:	 jamf uninstall -target <target volume> -id <JSS Package ID> [-fut] [-feu
 	 -fut 			 Remove any files from the package that are in the User Templates
 
 	 -feu 			 Remove any files from the package that are installed in a user's home directory
+
+
+
+
 Usage:	 jamf unmountServer -mountPoint <path>
 
 
 	 -mountPoint 		 The path to the share you want to unmount
+
+
+
+
 Usage:	 jamf update
 
  Updates the jamf binary and related applications to the latest version from the JSS.
+
+
+
+
 Usage:	 jamf updatePrebindings -target <path>
 
 
 	 -target 		 The path to the location you want to update prebindings for
+
+
+
+
 Usage:	jamf version
