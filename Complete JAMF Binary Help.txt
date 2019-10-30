@@ -1,0 +1,874 @@
+
+Usage:	 jamf aboutUsage (Active Directory built into macOS):
+	 jamf bind -type ad -domain <domain> [-computerID <computerID>]
+		 -username <username> -password <password> -ou <Computer OU> 
+		 [-cache] [-requireConfirmation] [-localHomes] [-useUNCPath] 
+		 [-mountStyle <afp | smb>] [-defaultShell <shell>] [-uid <user id>] 
+		 [-userGID <user group id>] [-gid <group id>] [-preferredServer <server>]  
+		 [-adminGroups <list of groups>] [-multipleDomains]
+
+
+Usage (Open Directory):
+	 jamf bind -type od -server <dns name or IP address> 
+		 [-performSecureBind -username <username> -password <password> ]  
+		 [-encryptUsingSSL] [-useForAuthentication] [-useForContacts]
+
+
+Usage (Active Directory using PowerBroker Identity Services-Formerly Likewise):
+	 jamf bind -type likewise -domain <domain> [-computerID <computerID>]
+		 -username <username> -password <password> [-ou <Computer OU>] 
+
+
+Usage (Active Directory using ADmitMac):
+	 jamf bind -type admitmac -server <dns name or IP address> [-computerID <computerID>]
+		 -username <username> -password <password> -ou <Computer OU> 
+		 -homeFolderType <network | local | either | mobile> [-requireConfirmation] 
+		 [-mountNetworkHomeFolderOnDesktop] [-mountStyle <afp | smb>] [-placeHomeFoldersInDirectory <directory>] 
+		 [-cachedLogins <integer>]  [-defaultShell <shell>] 
+		 [-adminGroups <list of groups>]  [-addManagedDomainUserToAdminGroup] 
+		 [-usersOU <Users OU>] [-groupsOU <Groups OU>] [-printersOU <Printers OU>] 
+		 [-sharedFoldersOU <Shared Folders OU>] [-userGID <user group id>] [-gid <group id>] 
+		 [-mapHomeDirectoryAttributeTo <attribute>]
+
+
+Usage (Active Directory using Centrify):
+	 jamf bind -type centrify -domain <domain> [-computerID <computerID>]
+		 -username <username> -password <password> [-ou <Computer OU>] 
+		 [-workstationMode] [-joinThisZone <zone>] [-preferredServer <server>] 
+		 [-overwriteExistingRecord] [-doNotUpdatePAMAndDSConfig]
+
+
+	 -computerID 				 The name that the computer will be assigned in the Active 
+						 Directory domain
+
+	 -domain 				 The DNS name of the server that hosts the Active Directory domain
+
+	 -server 				 The DNS name or IP address of the AD or OD server
+
+	 -username 				 The username that you will authenticate to 
+						 Active Directory with to bind the computer
+
+	 -password 				 The password for the user that you will authenticate to 
+						 Active Directory with to bind the computer
+
+	 -ou 					 The OU (Organizational Unit) that the computers are stored in 
+						 on the Active Directory server
+
+	 -cache 				 Create mobile account at login
+
+	 -requireConfirmation 			 Require confirmation before creating mobile account
+
+	 -localHomes 				 Use local home directories
+
+	 -useUNCPath 				 Use UNC Path from AD for network home location
+
+	 -mountStyle 				 Specify if the method that the user's 
+						 home directory is mounted (AFP or SMB)
+
+	 -defaultShell 				 Specify the user's default shell
+
+	 -uid 					 Specify that attribute that stores the UID
+
+	 -userGID 				 Specify that attribute that stores the User's GID
+
+	 -gid 					 Specify that attribute that stores the GID
+
+	 -preferredServer 			 Specify the DNS name of the server whose 
+						 Active Directory domain you want used by default
+
+	 -multipleDomains 			 Allow users to authenticate from any domain in the forest
+
+	 -adminGroups 				 Specify groups that are have administrative privileges on the computer
+
+	 -encryptUsingSSL 			 Bind to the OD server using SSL [OD Only]
+
+	 -performSecureBind 			 Perform a Secure, Two-Way bind to OD [OD Only]
+
+	 -useForAuthentication 			 Use this OD Server for Authentication [OD Only]
+
+	 -useForContacts 			 Use this OD Server for Contacts [OD Only]
+
+	 -cachedLogins 				 The number of times a user can log in when not 
+						 connected to a network. "0" disables cached logins. [ADmitMac only]
+
+	 -homeFolderType 			 One of the following: "network" (default), "local", "either" and "mobile" [ADmitMac only]
+
+	 -mountNetworkHomeFolderOnDesktop 	 Mount the user's home directory on their desktop [ADmitMac only]
+
+	 -placeHomeFoldersInDirectory 		 Specify a folder where the home folders should be mounted [ADmitMac only]
+
+	 -cachedCredentials 			 Allow the credentials to be cached [ADmitMac only]
+
+	 -addManagedDomainUserToAdminGroup 	 Add the 'Managed By' domain user to the local admin group [ADmitMac only]
+
+	 -usersOU 				 Specify the OU that users should be looked up from [ADmitMac only]
+
+	 -groupsOU 				 Specify the OU that groups should be looked up from [ADmitMac Only]
+
+	 -printersOU 				 Specify the OU that printers should be looked up from [ADmitMac Only]
+
+	 -sharedFoldersOU 			 Specify the OU that Shared Folders should be looked up from [ADmitMac Only]
+
+	 -mapHomeDirectoryAttributeTo 		 Specify that attribute that stores the Home Directory [ADmitMac only]
+
+	 -workstationMode 			 Use without Centrify Administrator Console [Centrify Only]
+
+	 -joinThisZone 				 Specify the Zone in the Centrify Administrator Console [Centrify Only]
+
+	 -overwriteExistingRecord 		 Overwrite the existing record [Centrify Only]
+
+	 -doNotUpdatePAMAndDSConfig 		 Do not update PAM and Directory Service configuration [Centrify Only]
+Usage:	 jamf bless -target <path to target> [-setOF]
+	 jamf bless -bootargs <boot-args> -bootfile <boot-file> -bootdevice <bootdevice>
+
+
+	 -target 		 The target drive that should be blessed
+
+	 -setOF 		 Set the drive as the current boot device
+
+	 -setBoot 		 Synonym for setOF
+
+	 -bootargs 		 Set the boot-args variable in Open Firmware
+
+	 -bootfile 		 Set the boot-file variable in Open Firmware
+
+	 -bootdevice 		 Set the boot-device variable in Open Firmware
+
+	 -bootdirectory 	 Set the boot-directory for an in-place upgrade
+
+
+Notes:	 You can use the -target flag to make a drive bootable. 
+	 The boot args command can be used to make a NetBoot server the 
+	 default device.
+Usage:	jamf canRunOnThisOSXVersionUsage:	 jamf changePassword -username <username> [-password <password>] [-passhash <passhash>] [-oldPassword <oldPass>] [-oldPasshash <oldhash>]
+
+
+	 -username			The username for which to change the password
+
+	 -password			The new password for the user
+
+	 -passhash			The hash of the new password for the user
+
+	 -oldPassword			The old/current password of the user
+
+	 -oldPasshash			The hash of the old/current password of the user
+Usage:	 jamf checkJSSConnection [-retry x]
+
+	 -retry 	 The number of times the connection should be tested
+			 If nothing is specified, the connection will be tested 12 times before exiting.
+
+
+	 Returns 0 if the JSS is available
+
+	 Returns 1 if the JSS is not available
+
+
+ Others: 
+	-allowInvalidCertificate 	 Overrides certificate verification. This value is ignored if SSL validation is set to "always". Must be run as root.Usage:	 jamf createAccount -username <username> -realname <Real Name> 
+		 [-password <password>] [-passhash <passhash>] [-home </path/to/home/directory>] 
+		 [-hint <hint>] [-shell <shell>] [-picture <picture>]
+		 [-admin] [-secureSSH] [-hiddenUser] [-networkUser] [-suppressSetupAssistant]
+
+	 -username 			 The user's user name 
+
+	 -realname 			 The user's real name
+
+	 -password 			 The password of the user
+
+	 -passhash 			 The hashed password of the user
+
+	 -home 				 The location of the user's home directory
+
+	 -hint 				 The hint displayed to the user
+
+	 -shell 			 The user's default shell
+
+	 -picture 			 The user's picture for the Login window
+
+	 -admin 			 This flag adds the user to the admin group.
+
+	 -hiddenUser 			 Creates an account with a UID under 500 and hides it
+
+	 -networkUser 			 Creates an account with a UID over 1025
+
+	 -secureSSH 			 Modifies the group com.apple.ssh_access to restrict access to only this user	 -suppressSetupAssistant 	 The Setup Assistant will not show on first login for this user
+
+
+Usage:	 jamf createConf [-url <url>]
+		 [-verifySSLCert <value>]
+		 [-server <servername>]
+		 [-target <drive>]
+
+
+	 -url 				 The JSS URL
+
+	 -verifySSLCert 		 Valid values are "always" (default), "never", "always_except_during_enrollment"
+
+	 -server 			 The IP address or DNS name of the server
+
+	 -target 			 The target drive that the conf file should be created on
+
+	 -allowInvalidCertificate 	 (Deprecated) Equivalent to '-verifySSLCert never'
+
+	 -k 				 (Deprecated) Equivalent to '-verifySSLCert never'
+Usage:	 jamf createHooks [-target <path>] [-policies] [-mcx] [-log] [-hideRestore] [-background] [-displayStatus]
+
+	 -target 		 The target drive used to create login/logout hooks
+
+	 -policies 		 Checks for policies on login/logout
+
+	 -mcx 			 Enforces MCX settings for the user that is logging in
+
+	 -log 			 Creates a log entry in the JSS for the user who is logging in/out of the computer
+
+	 -hideRestore 		 Hides the Restore partition if present
+
+	 -background 		 Performs actions in the background during login
+
+	 -displayStatus 	 Enables the progress display for login/logoutUsage:  jamf createSetupDone [-target <path to disk>] [-suppressSetupAssistant]
+
+	-target                	 If given, the drive that the Setup Assistant will be suppressed on.
+	                       	 Defaults to the boot drive.
+	-suppressSetupAssistant	 The Setup Assistant will not show on first login for any existing user accounts
+
+
+Usage:	 jamf createStartupItem [-target <path>] [-policies] [-ssh] [-log] [-mcx]
+
+
+	 -target 		 The target drive used to create the startup item
+
+	 -log 			 The startup script logs the IP address to the JSS.
+
+	 -policies 		 The startup item will check for policies in the JSS.
+
+	 -ssh 			 The startup script will ensure that SSH is running.
+
+	 -mcx 			 The startup script enforces System Level MCX settings.Usage:	 jamf deleteAccount -username <username> [-backupTo </path/to/dmg>] [-deleteHomeDirectory]
+
+	 -username 		 Deletes the user's account
+
+	 -backupTo 		 The .dmg file of the user's home directory
+				 If the home directory is not specified, the default will be 
+				 '/Users/Deleted Users/<user name>.dmg'.
+
+	 -deleteHomeDirectory 	 Do not archive the user's home directoryUsage:	 jamf deletePrinter -cupsName <cups name>
+
+	 -cupsName 		 The CUPS name of the printer.Usage:	 jamf deleteSetupDone -target <path to disk>
+
+	 -target 		 The drive that the setup file will be delete from.Usage:	 jamf displayMessage -message <message>
+
+	 -message 		 The message to be displayed.Usage:	 jamf enablePermissions -target <path to disk>
+
+	 -target 		 The drive that the permissions will be enabled on.Usage:	 jamf encryptDisk -username <username> [-password <password>] 
+		 [-passhash <passhash>] [-pathToCertificate <certificate>]
+		 [-defer] [-noRecoveryKey] [-prompt] 
+
+	 -username 		 The username that receives permission to unlock the disk 
+
+	 -password 		 The password of the user 
+
+	 -passhash 		 The hashed password of the user 
+
+	 -pathToCertificate 	 The full path to the certificate when using an institutional key for FileVault2. 
+
+	 -defer 		 Defers encryption until the OS prompts the user for a password 
+
+	 -noRecoveryKey 	 Does not return a recovery key 
+
+	 -prompt 		 Prompts for a user's credentials 
+
+	 -authRestart 		 Performs authenticated restart after filevault encryption is complete
+
+	 -type 			 The type of disk encryption you want to use. FileVault 2 is the default disk encryption type. Usage:	 jamf enroll [-prompt | -invitation] [-noRecon] [-noManage]
+
+
+	 -prompt		 Prompts for JSS and SSH credentials.
+
+	 -invitation		 Uses an invitation ID for credentials instead of a user name and password.
+
+	 -noRecon		 Stops enroll from acquiring inventory.
+
+	 -noManage		 Stops enroll from enforcing the management framework.
+
+	 -noPolicy		 Stops enroll from checking for enrollment policies.
+
+Return Codes: 
+	 0        The enrollment process has succeeded.
+	 70       An error occurred while enrolling a computer.
+	 71       An error occurred while submitting an inventory after enrollment.
+	 72       An error occurred while running a manage command after enrollment.
+	 73       An error occurred trying to load the task that executes Enrollment Complete policies in the background.
+	 74       An error occurred while gathering inventory data in the background.
+	 75       An error occurred while sending enrollment information to Jamf Pro.
+
+
+	 -jssUsername		 Username in the JSS to authenticated with. (Can also use -prompt)
+
+	 -jssPassword		 Password associated with the JSS user in jssUsername. (Can also use -prompt)
+
+	 -username		 Alias for jssUsername.
+
+	 -password		 Alias for jssPassword.
+
+	 -sshUsername		 Username for the management account that will be associated with this computer. (Can also use -prompt)
+
+	 -sshPassword		 Password for the management account that will be associated with this computer. (Can also use -prompt)
+
+	 -skipCertificateCreation	 Used in conjunction with overrideJss.
+
+	 -backgroundRecon	 Aquires inventory in non-blocking asynchronous process.
+
+	 -allowUntrustedJss	 Used in conjunction with skipCertificateCreation and overrideJss.
+
+	 -reenroll		 Used when changing the Certificate Authority the device certificate is issued by.
+
+	 -archiveDeviceCertificate	 Will archive the JAMF.keychain (if it exists) to a backup folder before replacing it with a new one.
+	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.Usage:	 jamf fixByHostFiles -target <path to disk> [-duplicate]
+
+	 -target 		 The root of the drive or folder that will be updated.Usage:	 jamf fixDocks 
+Usage:	 jamf fixPermissions [-target <path to disk>]
+
+	 -target 		 If given, the drive that the permissions will be fixed on.
+	         		 Defaults to the boot drive.Usage:	 jamf flushCaches [-flushSystem] [-flushUsers]
+
+	 -flushSystem 	 Flush all System Caches.
+
+	 -flushUsers 	 Flush all caches in the user's home directories.
+Usage:	 jamf flushPolicyHistoryUsage:	 jamf getARDFields -target <path to disk>
+
+	 -target 		 The drive that the ARD fields will be display from.Usage:	 jamf getComputerName -target <path to disk>
+
+	 -target 		 The drive that the computer name will be displayed from.Usage:	 jamf help <verb>
+
+	 <verb> 		 The verb you would like help for.Usage:	 jamf install -package <filename> -path <path to file> -target <volume>
+		 [-fut] [-feu] [-showProgress] 
+
+	 -package 		 The filename of the package that will be installed.
+	 -path 			 The path to the package. This does not include the name of the package.
+	 -target 		 The drive that the package will be installed to.
+	 -fut 			 The Fill User Templates option takes any user data 
+				 and populates the files to the user templates so any new 
+				 user created on the system will have these files.
+	 -feu 			 Fill Existing Users option takes any user data and 
+				 populates the files to every user on the computer that has a 
+				 home directory.
+	 -showProgress 		 Displays the progress of the HTTP download and the progress of the installation process.
+
+	 -displayName 		 An alternate name to display in messages instead of the package name. 
+
+	 -adobe 			 Indicates that the package is a legacy Adobe package (CS4 or below). 
+
+	 -adobeUpdater 		 Indicates that the package is a legacy Adobe updater package (CS4 or below). 
+
+	 -ignoreConflicts 	 Conflicts will be ignored for legacy Adobe packages. 
+
+	 -suppressFromDock 	 Legacy Adobe packages will not be added to the dock. 
+
+	 -id 				 The id in the JSS for a legacy Adobe package. 
+
+	 -configFile 		 The config file to use for a legacy Adobe package install. 
+
+	 -cache 			 Download a package so it can be installed later with installAllCached. 
+
+	 -osInstaller 		 The package is an Apple OS installer package. 
+
+	 -blockCopy 		 The package should be installed using a block copy. 
+
+	 -applyChoiceChangesXML 	 For Apple packages (.pkg or .mpkg), it applies the install choice changes specified in this file to the default choices in the package before installation. 
+
+	 -diskname 			 For windows image installs, this is used to flag the drive so Casper Imaging can find it. 
+
+	 -httpAuthMethod 		 The authorization method to use if path is an http address. 
+
+	 -httpUsername 		 The user name to use if path is an http address and the auth method is username. 
+
+	 -httpPasshash 		 The password to use if path is an http address and the auth method is username. Usage:	 jamf installAllCached
+
+Usage:	 jamf launchAgentUsage:	 jamf launchDaemon [-monitorUsage] [-enforceRestrictions] [-listenForUserNotifications] [-monitorBeacons]
+
+	 -monitorUsage			 Monitors application usage.
+
+	 -enforceRestrictions		 Enforces application restrictions.
+
+	 -listenForUserNotifications	 Enables end user interaction with Notification Center (10.8 and above).
+
+	 -monitorBeacons		 Enables monitoring for iBeacons.Usage: 	 jamf listPrinters 
+
+Notes: 	 Gathers installed printers and displays information
+	 such as names, locations, device URIs and models.
+
+
+Usage:	 jamf listUsers [-showAll] [-sizes]
+
+	 -showAll 	 Shows system users with unique ID numbers less than 500
+
+	 -sizes 	 Calculates the size of a user’s home directoryUsage:	 jamf log [-action <reboot | login | logout>] [-username <username>]
+
+
+	 -action 		 The action to log (reboot, login or logout)
+
+	 -username 		 The name of the user logging in or out.
+Usage: 	 jamf manage Notes: 	 This verb enforces the entire management framework from the JSS, 
+	 including scheduled tasks, the restricted applications, and the Global Management settings, such as the startup 
+	 script and login/logout hooks.
+
+
+	-rebootIfNeeded 		 Reboots the computer if need be.
+
+	-userLevelMdm 			 Will allow the mdm profile to be installed at the user level.
+
+	-forceMdmEnrollment 		 Will force the MDM enrollment to take place even if it is not needed.
+
+
+Usage:  jamf mapPrinter -id <JSS ID> [-default]
+
+Usage:  jamf mapPrinter -cupsName <cups compliant name> -displayName <display name> -deviceURI <uri>
+		 [-ppd <path to ppd>] [-path </path/to/ppd/>] [-default] [-shared]
+
+	 -id 			 The JSS ID of the printer.
+
+	 -cupsName 		 A CUPS compliant name.
+
+	 -location 		 The Location field of the printer.
+
+	 -displayName 		 The display name.
+
+	 -deviceURI 		 The DeviceURI for the printer.
+
+	 -path 			 The path to the PPDs folder.
+
+	 -ppd 			 The full path to the PPD to use for the printer.
+
+	 -default 		 Make this printer the default printer for all users on
+				 the system.
+
+	 -shared     		 Make this printer the shared printer
+Usage:	 jamf mcx
+
+Usage:	 jamf mcx -username <username>
+
+
+	 -username 		 The username of the account that Managed Preferences are being applied to.
+
+
+Notes:	 When run without the -username flag, Managed Preferences are applied for the Computer Level.
+
+Usage: 	 jamf mdm [-userLevelMdm]
+
+Notes: 	 This verb prepares the computer for use with MDM commands.
+
+	-userLevelMdm 			 Allows the MDM profile to be installed at the user level.	-localUsername 			 Optional local username to install the user level MDM to.
+
+
+Usage:	 jamf modifyDock -file <file name> [-leaveRunning] [-beginning] [-remove]
+
+Usage:	 jamf modifyDock -id <dock_item_id> [-leaveRunning] [-beginning] [-remove]
+
+
+	 -file 			 The file that contains the formatted dock items.
+
+	 -id 			 The dock_item_id of the dock item on the JSS.
+
+	 -leaveRunning 		 The Dock process will not be restarted.
+
+	 -beginning 		 The item will be placed at the beginning (left side) of the Dock.
+
+	 -remove 		 The item will be removed instead of added.
+Usage:	 jamf mount -server <ip or DNS name> -share <share name> [-type <afp | smb>]
+		 -username <username> [-password <password>] [-pashhash <pashhash>]
+		 [-port <port>] [-workgroup <workgroup>] [-visible]
+
+	 or 
+
+	 jamf mount -url <scheme>://<workgroup>;<user>:<password>@<host>:<port>/<share> 
+
+
+	 -url			 Mounts the specified URL.
+
+	 -server 		 The IP address or DNS name of the server
+
+	 -share 		 The name of the share you are mounting
+
+	 -type 			 The type of file share. Valid types are "afp" (default) and "smb"
+
+	 -username 		 User acccount to access the share with
+
+	 -password 		 Password to access the share with
+
+	 -passhash 		 The hashed password to access the share with
+
+	 -port 			 Specify a non standard port for AFP
+
+	 -workgroup 		 The workgroup or domain for the SMB type
+
+	 -visible 		 Specify that the share should be visible in the Finder
+Usage:	 jamf policy [-event <event>] [-username <username>] [-id <policy_id>] [-forceNoRecon]
+
+	-event		The event or trigger that the policy is associated with in the JSS. Historical synonyms include –trigger and –action.
+				Note: Running policy without an event will default to the scheduled event.
+				Other events include: login, logout, startup, networkStateChange, enrollmentComplete, along with custom events.
+
+	-username		The username to check for policies for.
+
+	-id			The ID of the policy to be executed. Used by Casper Remote and Self Service.
+
+	-forceNoRecon		Prevents computers from submitting inventory update when a policy is configured to update inventory.
+
+Return Codes: 
+	 0        The policy process finished with success.
+	 50       An unknown error occurred while running a policy.
+	 51       An error occurred because a policy is already being executed for this event.
+	 52       An error occurred while checking for policies.
+	 53       An error occurred while submitting the offline policy log to Jamf Pro.
+	 54       Policy execution needed to be restarted in the background because of the jamf binary update.
+	 55       An error occurred while submitting the Azure Active Directory ID information file.
+	 57       An error occurred while updating the jamf binary or Jamf apps.
+	 60       An error occurred while enforcing the management framework.
+	 300      An unknown error occurred while creating directory bindings.
+	 400      Disk encryption could not be executed because the jamf binary could not obtain a disk encryption ID from Jamf Pro.
+	 401      An error occurred while encrypting a disk.
+	 402      An error occurred while remediating a recovery key.
+	 440      An error occurred while mounting a distribution point.
+	 500      An unknown error occurred while modifying a dock item.
+	 501      An error occurred while modifying a dock item without contents.
+	 600      An error occurred while running an inventory update.
+	 700      An error occurred while manipulating a local account.
+	 750      An error occurred while resetting the managed account password.
+	 751      An error occurred while changing the managed account password.
+	 752      An error occurred while updating the managed account password in Jamf Pro.
+	 800      An error occurred because this computer does not meet the OS requirements for a package.
+	 801      An error occurred while installing a package.
+	 802      An error occurred while caching a package.
+	 803      An error occurred while installing a cached package.
+	 804      An error occurred while uninstalling a package.
+	 805      An error occurred while installing all of the cached packages.
+	 806      An error occurred while installing a patch package.
+	 900      An error occurred while installing or uninstalling a printer.
+	 911      An error occurred because the device URI was not provided.
+	 912      An error occurred because the printer name was not provided.
+	 913      An error occurred because the PPD file path is invalid.
+	 914      The printer cannot be installed because the computer does not meet the OS requirements for that printer.
+	 915      An error occurred while mapping a printer.
+	 921      An error occurred while uninstalling a printer.
+	 1001     An error occurred while setting an EFI password.
+	 1002     An error occurred while removing an EFI password.
+	 2100     An error occurred while saving an embedded script to the disk.
+	 2101     An error occurred while executing a script.
+	 2103     An error occurred because this computer does not meet the OS requirements for the script.
+	 2200     An error occurred while installing software updates.
+	 2201     An error occurred while installing software updates. There may be a proxy in place.
+	 2202     An error occurred while adding a software update server.
+	 2300     An error occurred while running Microsoft Device Registration.
+	 2301     An error occurred because Microsoft Device Registration can only register computers when they are connected to the network.
+
+
+	-showSteps		Prints the steps to the console.
+
+	-doNotRestart		No restart.
+
+	-offline		Will go into offline mode.
+
+	-trigger		The trigger matches the "Triggered By" field on the JSS for the policies
+
+	-action			Historical synonym for -trigger and -event
+
+	-noInteraction		Will not show any user interaction messages.
+
+	-selfServiceOnly	Will only execute policies available to Self Service.
+
+	-forceAppUpdates	Will attempt to update the JAMF Binary and other apps even if the version matches the JSS.
+
+	-skipAppUpdates		Will not attempt to update the JAMF Binary or other apps. Overrides the -forceAppUpdates option.
+
+	-retrySeconds		How many seconds this policy will attempt to run while waiting for other policies to finish executing.Usage:	 jamf reboot [-minutes <minutes>] [-message <message>] [-background] [-immediately]
+
+
+	 -minutes 		 The minutes until the machine should reboot
+
+	 -message 		 The message to display to any logged in users
+
+	 -startTimerImmediately  Start the restart timer immediately without requiring the user to acknowledge the restart message
+
+	 -background 		 Background this process (don't wait until the reboot to exit)
+
+	 -immediately 		 Reboot now without warning users
+
+	 -fvauthenticated 	 Path to plist with credentials to perform filevault authenticated restart
+
+
+Usage:	 jamf recon
+
+
+	-saveFormTo 		 Saves the contents of the HTTP form to a file
+
+
+The following options allow you to specify inventory information for the computer:
+
+	-assetTag 		 The asset tag of the computer
+
+	-endUsername 		 The user name of the primary user
+
+	-realname 		 The real name of the primary user
+
+	-email 			 The email address of the primary user
+
+	-position 		 The position (job title) of the primary user
+
+	-building 		 The text representation of a building in the jSS
+
+	-department 		 The text representation of a department in the JSS
+
+	-phone 			 The phone number of the primary user
+
+	-room 			 The room that the computer is in
+
+	-ldapServerID 		 The JSS ID of the LDAP server to which the primary user belongs
+
+	-userID 		 The user ID of the primary user's account in the LDAP server.
+
+
+The following options allow you to update the computer's management account information in the JSS:
+
+	-sshUsername 		 A username that is used to connect to the computer over SSH.
+
+	-sshPassword 		 A password that is used to connect to the computer over SSH.
+
+	-sshPasshash 		 A hashed copy of a password that is used to connect to the computer over SSH
+
+
+ Others: 
+	-defaultFileServerID 		 The default file server to use.
+
+	-defaultNetBootServerID 	 The default netboot server to use.
+
+	-defaultSoftwareUpdateServerID 	 The default sus to use.
+
+
+Usage:	 jamf enroll [-prompt | -invitation] [-noRecon] [-noManage]
+
+
+	 -prompt		 Prompts for JSS and SSH credentials.
+
+	 -invitation		 Uses an invitation ID for credentials instead of a user name and password.
+
+	 -noRecon		 Stops enroll from acquiring inventory.
+
+	 -noManage		 Stops enroll from enforcing the management framework.
+
+	 -noPolicy		 Stops enroll from checking for enrollment policies.
+
+Return Codes: 
+	 0        The enrollment process has succeeded.
+	 70       An error occurred while enrolling a computer.
+	 71       An error occurred while submitting an inventory after enrollment.
+	 72       An error occurred while running a manage command after enrollment.
+	 73       An error occurred trying to load the task that executes Enrollment Complete policies in the background.
+	 74       An error occurred while gathering inventory data in the background.
+	 75       An error occurred while sending enrollment information to Jamf Pro.
+
+
+	 -jssUsername		 Username in the JSS to authenticated with. (Can also use -prompt)
+
+	 -jssPassword		 Password associated with the JSS user in jssUsername. (Can also use -prompt)
+
+	 -username		 Alias for jssUsername.
+
+	 -password		 Alias for jssPassword.
+
+	 -sshUsername		 Username for the management account that will be associated with this computer. (Can also use -prompt)
+
+	 -sshPassword		 Password for the management account that will be associated with this computer. (Can also use -prompt)
+
+	 -skipCertificateCreation	 Used in conjunction with overrideJss.
+
+	 -backgroundRecon	 Aquires inventory in non-blocking asynchronous process.
+
+	 -allowUntrustedJss	 Used in conjunction with skipCertificateCreation and overrideJss.
+
+	 -reenroll		 Used when changing the Certificate Authority the device certificate is issued by.
+
+	 -archiveDeviceCertificate	 Will archive the JAMF.keychain (if it exists) to a backup folder before replacing it with a new one.
+	 -launchSelfService		 Launches Self Service, if available, as the logged in user after enrollment sucessfully completes.Usage:	jamf removeFramework	-keepMDM 		 Leaves the MDM management in place.
+
+Usage:	 jamf removeSWUSettings
+
+Usage:	 jamf resetPassword -username <username> [-password <password>] [-passhash <passhash>]
+
+
+	 -username			The username for which to reset the password
+
+	 -password			The new password for the user
+
+	 -passhash			The hash of the new password for the user
+Usage:	 jamf runScript -script <file name> -path <path to script> [-computerName <computerName>]
+		 [-target <target volume>] [-username <username>] [-p1 <parameter 1>] [-p2 <parameter 2>] 
+		 [-p3 <parameter 3>] [-p4 <parameter 4>] [-p5 <parameter 5>] [-p6 <parameter 6>] 
+		 [-p7 <parameter 7>] [-p8 <parameter 8>] 
+
+
+	 -script 		 The file name of the script to run
+
+	 -path 			 The path to the script
+
+	 -computerName 		 The name of the computer to be passed to the script
+				 If the name is not specified, it will be looked up on the target drive.
+
+	 -target 		 The target drive to be passed to the script
+
+	 -username 		 The username to be passed to the script
+
+	 -p[1-8] 		 The parameters to be passed to the script
+
+
+Notes: 	 Parameters in scripts created for use with the Casper Suite must be 
+	 formatted in a certain way. The parameters passed to the script are as follows:
+		 Target Drive 
+		 Computer Name 
+		 Username 
+		 Parameter 1 
+		 Parameter 2 
+		 Parameter 3 
+		 Parameter 4 
+		 Parameter 5 
+		 Parameter 6 
+		 Parameter 7 
+		 Parameter 8 Usage:	 jamf runSoftwareUpdate  -server [server:port] [-setPrefOnly] [-fromApple]
+
+
+	 -server 		 The server which the Software Update service should look to
+
+	 -setPrefOnly 		 Point SWU to the server, but do not run
+
+	 -fromApple 		 Run Software Update from Apple, not a hosted server
+Usage:	 jamf scheduledTask -command <command> -name <name> [-id <id>] [-user <user>]
+		 [-month <month>] [-day <day>] [-hour <hour>] [-minute <minute>]
+
+	 -command 	 The Scheduled Task executes this shell command
+
+	 -name 		 Used in the launchd label (for example, com.jamfsoftware.task.<name>) 
+			 If the -id option is not given, then the -name option will be used in the file name.
+
+	 -id 		 The identifier of the task (for example, the file will be named com.jamfsoftware.task.<id>.plist 
+			 instead of using the name)
+
+	 -user 		 The user that owns the process.
+
+	 -runAtLoad 	 Optional key that controls whether your job is launched once at the time the job is loaded.
+ 			 The default is false.
+
+	 -month 	 The task runs on the month value specified in the schedule. The default is every month. 
+ 			 The valid values are 1-12.
+
+	 -day 		 The task runs on the day of the week or date value specified in the schedule. The default is every day. 
+ 			 The valid values for day of the week are mon, tue, wed, thu, fri, sat, and sun. The valid values
+			 for date are 1-31.
+
+	 -hour 		 The task runs on the hour value specified in the schedule. The default is every hour.
+			 The valid values are 0-23. 
+
+	 -minute 	 The task runs on the minute value specified in the schedule or on the start interval value.
+			 The default is every minute except when a start interval is specified. 
+			 To use a start interval, use the format ‘*<minutes>’ (for example, -minute ‘*/15/’ runs the task
+			 every 15 minutes from the time it is loaded).
+			 This will force the StartInterval scheduler and ignore all other month, day, and hour options passed in.
+
+
+Usage:	 jamf setARDFields -target <target volume> -1 <field 1> -2 <field 2> -3 <field 3> -4 <field 4>
+
+
+	 -target 		 The target drive to set the fields on
+
+	 -1 			 The first field for Apple Remote Desktop
+
+	 -2 			 The second field for Apple Remote Desktop
+
+	 -3 			 The third field for Apple Remote Desktop
+
+	 -4 			 The fourth field for Apple Remote Desktop
+Usage:	 jamf setComputerName [-target <target volume>] [-name <name>]
+		 [-useMACAddress] [-useSerialNumber] [-suffix <suffix>]
+		 [-prefix <prefix>] [-fromFile <path to file>]
+
+
+	 -target 		 The target drive to set the name on
+
+	 -name 			 The new name for the computer
+
+	 -useMACAddress 	 Generate the name using the MAC Address
+
+	 -useSerialNumber 	 Generate the name using the Serial Number
+
+	 -prefix 		 Add this prefix to the MAC Address or Serial Number
+
+	 -suffix 		 Add this suffix to the MAC Address or Serial Number
+
+	 -fromFile 		 The path to a CSV file containing the computer's MAC Address or Serial Number followed by the desired name
+Usage:	 jamf setHomePage -homepage <homepage> [-feu] [-fut] [-username <username>]
+		 [-removeDownloadLocation] [-skipIE] [-skipFirefox] [-skipMozilla] [-skipSafari]
+
+
+	 -homepage 		 The URL for the homepage
+
+	 -feu 			 Set the homepage for existing users
+
+	 -fut 			 Set the homepage in the User Templates
+
+	 -username 		 Set the homepage only for this user
+
+	 -ffmstone 		 Specify the milestone version for FireFox
+
+	 -mozmstone 		 Specify the milestone version for Mozilla (Netscape)
+
+	 -removeDownloadLocation Remove the default download location
+
+	 -skipIE 		 Do not set the homepage for Internet Explorer
+
+	 -skipFirefox 		 Do not set the homepage for Firefox
+
+	 -skipMozilla 		 Do not set the homepage for Mozilla based browsers (Netscape)
+
+	 -skipSafari 		 Do not set the homepage for Safari
+Usage:	 jamf setOFP -mode <none | command | full> [-passhash <passhash>] [-password <password>]
+
+
+	 -mode 			 The security-mode to set in Open Firmware. Valid options are:
+
+					none	 No limitations will be applied to booting
+
+					command	 A password will be required to switch the boot device via OF
+
+					full	 A password will be required to boot the computer
+
+	 -passhash 		 The hash to set the security-password to in Open Firmware
+
+	 -password 		 The password to set the security-password to in Open Firmware
+Usage:	 jamf startSSH
+
+Usage: 	 jamf trustJSS 
+
+Notes: 	 This verb downloads the required CA certificate(s) from the JSS
+	 and puts them in System keychain, making them trusted.
+
+
+Usage:	 jamf uninstall -target <target volume> -id <JSS Package ID> [-fut] [-feu]
+
+
+	 -target 		 The target drive to uninstall the package from
+
+	 -id 			 The ID of the package in the JSS
+
+	 -fut 			 Remove any files from the package that are in the User Templates
+
+	 -feu 			 Remove any files from the package that are installed in a user's home directory
+Usage:	 jamf unmountServer -mountPoint <path>
+
+
+	 -mountPoint 		 The path to the share you want to unmount
+Usage:	 jamf update
+
+ Updates the jamf binary and related applications to the latest version from the JSS.
+Usage:	 jamf updatePrebindings -target <path>
+
+
+	 -target 		 The path to the location you want to update prebindings for
+Usage:	jamf version
