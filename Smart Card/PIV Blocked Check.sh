@@ -146,6 +146,10 @@ elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == "0x83" ]]
 then
 	echo "PIN blocked."
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is blocked." buttons {“Dismiss"}'
+elif [[ "$returnSW1" == "0x98" ]] && [[ "$returnSW2" == "0x40" ]]
+then
+	echo "PIN blocked."
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is blocked." buttons {“Dismiss"}'
 elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == “0x84" ]]
 then
 	echo "PIN blocked/data invalidated.”
