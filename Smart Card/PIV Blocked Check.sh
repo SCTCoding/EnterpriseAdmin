@@ -91,7 +91,22 @@ then
 elif [[ "$returnSW1" == "0x63" ]]
 then
 	echo "PIN incorrect."
-	if [[ "$returnSW2" == "0xCA" ]]
+	if [[ "$returnSW2" == "0xCF" ]]
+	then
+		triesLeft="15"
+	elif [[ "$returnSW2" == "0xCE" ]]
+	then
+		triesLeft="14"
+	elif [[ "$returnSW2" == "0xCD" ]]
+	then
+		triesLeft="13"
+	elif [[ "$returnSW2" == "0xCC" ]]
+	then
+		triesLeft="12"
+	elif [[ "$returnSW2" == "0xCB" ]]
+	then
+		triesLeft="11"
+	elif [[ "$returnSW2" == "0xCA" ]]
 	then
 		triesLeft="10"
 	elif [[ "$returnSW2" == "0xC9" ]]
