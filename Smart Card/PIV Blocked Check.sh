@@ -90,8 +90,15 @@ then
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct!" buttons {"Dismiss"}'
 elif [[ "$returnSW1" == "0x63" ]]
 then
-	echo "PIN incorrect. At least one more try."
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is incorrect, but you still have at least one more try." buttons {"Dismiss"}'
+	echo "PIN incorrect."
+	if [[ "$returnSW2" == "0xCA" ]]
+	then
+		triesLeft="10"
+	elif [[ "$returnSW2" == "0xC9" ]]
+	then
+		triesLeft=$(echo -n $returnSW2 | cut 'C' -f2)
+	fi
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is incorrect. You have \"$triesLeft\"" buttons {"Dismiss"}'
 elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == "0x83" ]]
 then
 	echo "PIN blocked."
