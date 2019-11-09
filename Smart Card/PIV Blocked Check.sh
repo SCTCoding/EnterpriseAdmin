@@ -88,13 +88,17 @@ if [[ "$returnSW1" == "0x90" ]] && [[ "$returnSW2" == "0x00" ]]
 then
 	echo "PIN Correct"
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct!" buttons {"Dismiss"}'
-elif [[ "$returnSW1" == "0x98" ]] && [[ "$returnSW2" == "0x04" ]]
+elif [[ "$returnSW1" == "0x63" ]]
 then
 	echo "PIN incorrect. At least one more try."
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is incorrect, but you still have at least one more try." buttons {"Dismiss"}'
-elif [[ "$returnSW1" == "0x98" ]] && [[ "$returnSW2" == "0x40" ]]
+elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == "0x83" ]]
 then
 	echo "PIN blocked."
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is blocked." buttons {“Dismiss"}'
+elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == “0x84" ]]
+then
+	echo "PIN blocked/data invalidated.”
 	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is blocked." buttons {"Dismiss"}'
 else
 	echo "Card has other issues."
