@@ -83,11 +83,39 @@ returnSW2=$(echo $return | cut -d '=' -f 3 | cut -d ')' -f1)
 
 echo "SW2 is $returnSW2"
 
+tryReturn=$(/usr/local/bin/opensc-tool -s 00:20:00:80:00 2>&1)
+
+trySW2=$(echo $tryReturn | cut -d '=' -f 3 | cut -d ')' -f1)
+
+## Standard Tries Output
+if [[ "$trySW2" == "0xCF" ]]
+then
+	triesAvailable="15"
+elif [[ "$trySW2" == "0xCE" ]]
+then
+	triesAvailable="14"
+elif [[ "$trySW2" == "0xCD" ]]
+then
+	triesAvailable="13"
+elif [[ "$trySW2" == "0xCC" ]]
+then
+	triesAvailable="12"
+elif [[ "$trySW2" == "0xCB" ]]
+then
+	triesAvailable="11"
+elif [[ "$trySW2" == "0xCA" ]]
+then
+	triesAvailable="10"
+elif [[ "$trySW2" == "0xC9" ]]
+then
+	triesAvailable=$(echo -n $trySW2 | cut 'C' -f2)
+fi
+
 ## Output handler.
 if [[ "$returnSW1" == "0x90" ]] && [[ "$returnSW2" == "0x00" ]]
 then
 	echo "PIN Correct"
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct!" buttons {"Dismiss"}'
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct! You have \"$triesAvailable\" tries left." buttons {"Dismiss"}'
 elif [[ "$returnSW1" == "0x63" ]]
 then
 	echo "PIN incorrect."
