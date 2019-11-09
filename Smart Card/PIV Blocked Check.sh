@@ -115,7 +115,7 @@ fi
 if [[ "$returnSW1" == "0x90" ]] && [[ "$returnSW2" == "0x00" ]]
 then
 	echo "PIN Correct"
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct! You have \"$triesAvailable\" tries left." buttons {"Dismiss"}'
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is correct! You have '$triesAvailable' tries left." buttons {"Dismiss"}'
 elif [[ "$returnSW1" == "0x63" ]]
 then
 	echo "PIN incorrect."
