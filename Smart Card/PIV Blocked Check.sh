@@ -141,7 +141,7 @@ then
 	then
 		triesLeft=$(echo -n $returnSW2 | cut 'C' -f2)
 	fi
-	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is incorrect. You have \"$triesLeft\"" buttons {"Dismiss"}'
+	/bin/launchctl asuser "$loggedInUID" sudo -iu "$loggedInUser" osascript -e 'display dialog "PIN is incorrect. You have '$triesLeft'" buttons {"Dismiss"}'
 elif [[ "$returnSW1" == "0x69" ]] && [[ "$returnSW2" == "0x83" ]]
 then
 	echo "PIN blocked."
