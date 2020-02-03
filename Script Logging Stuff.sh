@@ -1,7 +1,8 @@
 #! /bin/bash -xv
 
 exec 3>&1 4>&2
-trap 'exec 3>&1 4>&2' 0 1 2 3 RETURN
+# trap 'exec 3>&1 4>&2' 0 1 2 3 RETURN
+trap 'exec 3>&1 4>&2' 0 1 2 3
 exec 1>$name.log 2>&1
 
 # script
