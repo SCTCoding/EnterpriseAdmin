@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>ExtensionData</key>
+            <dict>
+                <key>allowAutomaticLogin</key>
+                <true/>
+                <key>isDefaultRealm</key>
+                <false/>
+                <key>pwNotificationDays</key>
+                <integer>15</integer>
+                <key>requireUserPresence</key>
+                <false/>
+                <key>syncLocalPassword</key>
+                <true/>
+                <key>useSiteAutoDiscovery</key>
+                <true/>
+            </dict>
+            <key>ExtensionIdentifier</key>
+            <string>com.apple.AppSSOKerberos.KerberosExtension</string>
+            <key>Hosts</key>
+            <array>
+                <string>.example.com</string>
+            </array>
+            <key>PayloadDisplayName</key>
+            <string>Single Sign-on Extensions</string>
+            <key>PayloadEnabled</key>
+            <true/>
+            <key>PayloadIdentifier</key>
+            <string>com.apple.mdm.test.local.af517dc0-7353-0137-3524-3a008d11ab01.alacarte.single-sign-on-extension.79757090-7354-0137-3525-3a008d11ab01</string>
+            <key>PayloadType</key>
+            <string>com.apple.extensiblesso</string>
+            <key>PayloadUUID</key>
+            <string>79757090-7354-0137-3525-3a008d11ab01</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Realm</key>
+            <string>EXAMPLE.COM</string>
+            <key>TeamIdentifier</key>
+            <string>apple</string>
+            <key>Type</key>
+            <string>Credential</string>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>Kerberos SSO</string>
+    <key>PayloadIdentifier</key>
+    <string>com.apple.mdm.RJLmpb.local.af517dc0-7353-0137-3524-3a008d11ab01.alacarte</string>
+    <key>PayloadOrganization</key>
+    <string>Apple</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadScope</key>
+    <string>System</string>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>af517dc0-7353-0137-3524-3a008d11ab01</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
