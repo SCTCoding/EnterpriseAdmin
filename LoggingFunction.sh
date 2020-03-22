@@ -30,5 +30,4 @@ function logToFile {
 	fi
 }
 
-logToFile 
-
+logToFile
